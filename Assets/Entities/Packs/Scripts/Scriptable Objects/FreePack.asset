@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d117ae0d10202408a47db0c8aeaeec, type: 3}
   m_Name: FreePack
   m_EditorClassIdentifier: Assembly-CSharp::PackSO
+  packPrefab: {fileID: 8343659125433051832, guid: 045585cf8a6a8424eacf32452f3d004f, type: 3}
   packName: Basic Pack
   packDescription: Basic pack to get you going! You'll want to get something with
     more than two cards.

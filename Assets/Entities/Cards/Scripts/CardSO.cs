@@ -4,14 +4,17 @@ using UnityEngine;
 public class CardSO : ScriptableObject
 {
     public GameObject cardPrefab;
+    [Header("Card Info")]
     public string cardName;
     public string cardDescription;
+    [Header("Card Data")]
     public float cardPrice;
+    public CardType cardType;
     public Rarity rarity;
-    public CardStyle cardStyle;
+    [Header("Art")]
     public string imageName;
     // Change this when I figure out how I want to handle images, right now simple name/directory lookup
-    public CardType cardType;
+    public CardStyle cardStyle;
     public ParticleSystem openPackVFX;
 
     public enum CardType
