@@ -1,0 +1,31 @@
+Game Design:
+Daniel Bruns
+
+Programming:
+Daniel Bruns
+
+3D Models:
+Daniel Bruns
+
+Texturing:
+Daniel Bruns
+
+Writing:
+Daniel Bruns
+
+
+
+Fonts:
+Medabots - Pixel Sagas
+https://www.dafont.com/medabots.font?l[]=10&l[]=1&l[]=2
+
+Baldur - Dieter Steffmann
+https://www.dafont.com/baldur.font?l[]=10&l[]=1&l[]=13&l[]=2
+
+Bolton Sans - Paul Lloyd
+https://www.dafont.com/bolton-sans.font?l[]=10&l[]=1&l[]=13&l[]=2
+
+Music:
+
+SFX:
+

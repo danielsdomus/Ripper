@@ -183,6 +183,82 @@ Transform:
   - {fileID: 7246581431870112003}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &607891580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 607891583}
+  - component: {fileID: 607891584}
+  - component: {fileID: 607891581}
+  m_Layer: 0
+  m_Name: LootSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &607891581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607891580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5108134e5ecb6f4da1200cd613dff98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootSystemMonteCarloAnalyzer
+  numPlayers: 100000
+  packsRippedPerPlayer: 200
+  randomSeed: 1995
+  cardLootSystem: {fileID: 607891584}
+  latestResults:
+    prototypeAverage: 0
+    percentWithZeroPrototypes: 0
+    oneInXPlayers: 0
+    minPrototypes: 0
+    maxPrototypes: 0
+--- !u!4 &607891583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607891580}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25843, y: 5.62341, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &607891584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607891580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f4507c327b67e4e8d44ac6b50e8432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PityLootSystem
+  basePrototypeChance: 0.02
+  softPityThreshold: 15
+  hardPityThreshold: 35
+  pityRampPerPack: 0.009
+  common: 0.6
+  uncommon: 0.2
+  rare: 0.1
+  superRare: 0.05
+  ultraRare: 0.03
 --- !u!1 &635808792
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7adc4d3bd77f234a92d918bd6b07ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PackManager
-  packOpenVFX: {fileID: 3074494860529716130, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
 --- !u!4 &1831165987
 Transform:
   m_ObjectHideFlags: 0
@@ -1119,3 +1194,4 @@ SceneRoots:
   - {fileID: 1899543954}
   - {fileID: 2074175653}
   - {fileID: 326979518}
+  - {fileID: 607891583}
