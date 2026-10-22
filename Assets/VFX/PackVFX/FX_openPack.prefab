@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4867813766912649702}
   - component: {fileID: 5733352318839452446}
   m_Layer: 0
-  m_Name: openPack
+  m_Name: FX_openPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

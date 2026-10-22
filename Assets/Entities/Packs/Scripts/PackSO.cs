@@ -11,5 +11,5 @@ public class PackSO : ScriptableObject
     public float packPrice = 8.99f;
     public int packSize = 10;
     [Header("Art")]
-    public string artImgFilename;
+    public Texture packImage;
 }

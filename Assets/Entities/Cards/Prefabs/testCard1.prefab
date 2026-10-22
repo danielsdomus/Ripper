@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Card
   cardSO: {fileID: 11400000, guid: 0c6b97dde7bbbf442ae852f3bd2055e3, type: 2}
+  cardMaterial: {fileID: 2100000, guid: 9427d8ef7348b1d40849a202ba542f18, type: 2}

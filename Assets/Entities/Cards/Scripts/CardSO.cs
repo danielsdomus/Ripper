@@ -5,17 +5,17 @@ public class CardSO : ScriptableObject
 {
     public GameObject cardPrefab;
     [Header("Card Info")]
-    public string cardName;
-    public string cardDescription;
+    public string cardName { get; }
+    public string cardDescription { get; }
     [Header("Card Data")]
-    public float cardPrice;
-    public CardType cardType;
-    public Rarity rarity;
+    public float cardPrice { get; }
+    public CardType cardType { get; }
+    public Rarity rarity { get; }
     [Header("Art")]
-    public string imageName;
+    public Texture cardImage;
     // Change this when I figure out how I want to handle images, right now simple name/directory lookup
-    public CardStyle cardStyle;
-    public ParticleSystem openPackVFX;
+    public CardStyle cardStyle { get; }
+    private ParticleSystem openPackVFX;
 
     public enum CardType
     {

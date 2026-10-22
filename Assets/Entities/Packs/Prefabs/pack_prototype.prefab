@@ -32,8 +32,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 4.04, z: -1.06}
   m_LocalScale: {x: 3, y: 5, z: 0.2}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3420033101785578355}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4161442394316514213
@@ -69,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: c23e00826ce0965449650245c7b3ae2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,67 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6662427c4c078d4fb49d8a0839e4c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pack
-  packSO: {fileID: 11400000, guid: 9b4d7cd3f36d09048b833be2d018ef6e, type: 2}
+  packSO: {fileID: 11400000, guid: ece3d63d1bd6d304c8509e11e873eaa1, type: 2}
   packOpenVFX: {fileID: 3074494860529716130, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
---- !u!1001 &3438372340326705047
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7456301994347741038}
-    m_Modifications:
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3074494860529716130, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-      propertyPath: m_Name
-      value: openPack
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
---- !u!4 &3420033101785578355 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 54580381964442852, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}
-  m_PrefabInstance: {fileID: 3438372340326705047}
-  m_PrefabAsset: {fileID: 0}
+  packMaterial: {fileID: 2100000, guid: c23e00826ce0965449650245c7b3ae2c, type: 2}
