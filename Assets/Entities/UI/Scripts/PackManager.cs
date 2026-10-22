@@ -1,15 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PackManager : MonoBehaviour
 {
     Pack currentPack;
-    [SerializeField] GameObject packOpenVFX;
-
-    void Awake()
-    {
-        
-    }
 
     void Start()
     {
@@ -18,9 +13,21 @@ public class PackManager : MonoBehaviour
         Debug.Log(currentPack.GetPackSize());
     }
 
-    public void OpenPack()
+    void OpenPack()
     {
         Debug.Log("opened pack");
-        Instantiate(packOpenVFX, transform.position, Quaternion.identity);
+        currentPack.PlayPackOpenFX();
+        SpawnCards();
+    }
+
+    void SpawnCards()
+    {
+        List<Card> packCards = new List<Card>();
+        for (int i = 0; i < currentPack.GetPackSize(); i++)
+        {
+            Card cardToSpawn = Instantiate(currentPack.GetCardPrefab(), new Vector3(i * 2, 0, 0), Quaternion.identity);
+            packCards.Add(cardToSpawn);
+            Debug.Log($"Card {i} spawned");
+        }
     }
 }

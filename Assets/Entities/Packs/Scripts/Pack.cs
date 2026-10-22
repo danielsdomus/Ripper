@@ -1,3 +1,5 @@
+using System;
+using Unity.Mathematics;
 using UnityEditor.UI;
 using UnityEngine;
 
@@ -5,6 +7,7 @@ public class Pack : MonoBehaviour
 {
     [SerializeField] PackSO packSO;
     [SerializeField] GameObject packOpenVFX;
+    [SerializeField] Transform FXSpawnPos;
 
     [SerializeField] Material packMaterial;
 
@@ -54,4 +57,13 @@ public class Pack : MonoBehaviour
         return packSO.packPrice;
     }
 
+    public void PlayPackOpenFX()
+    {
+        Instantiate(packOpenVFX, FXSpawnPos.position, Quaternion.identity);
+    }
+
+    internal Card GetCardPrefab()
+    {
+        throw new NotImplementedException();
+    }
 }
