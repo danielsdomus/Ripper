@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class PackManager : MonoBehaviour
@@ -10,10 +9,12 @@ public class PackManager : MonoBehaviour
     [Header("Pack Settings")]
     [SerializeField] int pityCap = 30; // max packs before opening pack's guaranteed rarity card
 
+    SaveData data;
     int packsSinceLastPity = 0;
 
     void Awake()
     {
+        data = SaveSystem.Load();
         if (!pack)
         {
             Debug.LogError("PackSO reference is missing in PackManager.");
@@ -22,27 +23,70 @@ public class PackManager : MonoBehaviour
         packsSinceLastPity = PlayerPrefs.GetInt("Pity_" + pack.cardSet.setCode, 0); // Replace with proper save system
     }
 
-    public List<CardSO> OpenPack()
+    public void OpenPack(PackSO pack)
     {
-        List<CardSO> packCards = new List<CardSO>();
+        CardSetSO cardSet = pack.cardSet;
+
+
+        // Guards
+        if (!cardSet)
+        {
+            Debug.LogError($"{pack.name}: CardSetSO reference is missing in PackSO. Aborting pack opening.");
+            return;
+        }
+        if (!cardSet.pityRarity)
+        {
+            Debug.LogError($"{pack.name}: Pity rarity is not set in CardSetSO. Aborting pack opening.");
+            return;
+        }
+
+        int pityCount = GetPityCount(cardSet.setCode);
+        bool pityActive = pityCount >= cardSet.pityCap; // Guarantee pity card ON
+
         List<CardRaritySO> rolledRarities = new List<CardRaritySO>();
 
-        bool pityActive = packsSinceLastPity >= pityCap -1; // Guarantee pity card ON cap number.
-
-        // Roll for each card in the pack
         for (int i = 0; i < pack.packSize; i++)
         {
-            CardRaritySO rarity = (pityActive && i == pack.packSize - 1) ? pack.cardSet.pityRarity : RollRarity(pack.cardSet);
-            rolledRarities.Add(rarity);
-            CardSO card = rarity.cardPool[Random.Range(0, rarity.cardPool.Length)];
-            packCards.Add(card);
+            if (pityActive && i == pack.packSize - 1)
+            {
+                rolledRarities.Add(cardSet.pityRarity);
+            } else
+            {
+                rolledRarities.Add(RollRarity(cardSet));
+            }
         }
-        packsSinceLastPity = rolledRarities.Contains(pack.cardSet.pityRarity) ? 0 : packsSinceLastPity++;
+        int newPityCount = rolledRarities.Contains(cardSet.pityRarity) ? 0 : pityCount + 1;
+        SetPityCount(cardSet.setCode, newPityCount);
 
-        Debug.Log("opened pack");
-        pack.packOpenVFX.Play();
-        return packCards;
-    }
+        foreach (CardRaritySO rarity in rolledRarities)
+            GrantCardFromRarity(rarity);
+        
+        data.totalPacksOpened++;
+        SaveSystem.Save(data);
+        Debug.Log($"Pack opened. Total packs opened: {data.totalPacksOpened}. Pity count for set {cardSet.setCode}: {newPityCount}");
+        }
+
+    // public List<CardSO> OpenPack()
+    // {
+    //     List<CardSO> packCards = new List<CardSO>();
+    //     List<CardRaritySO> rolledRarities = new List<CardRaritySO>();
+
+    //     bool pityActive = packsSinceLastPity >= pityCap -1; // Guarantee pity card ON cap number.
+
+    //     // Roll for each card in the pack
+    //     for (int i = 0; i < pack.packSize; i++)
+    //     {
+    //         CardRaritySO rarity = (pityActive && i == pack.packSize - 1) ? pack.cardSet.pityRarity : RollRarity(pack.cardSet);
+    //         rolledRarities.Add(rarity);
+    //         CardSO card = rarity.cardPool[Random.Range(0, rarity.cardPool.Length)];
+    //         packCards.Add(card);
+    //     }
+    //     packsSinceLastPity = rolledRarities.Contains(pack.cardSet.pityRarity) ? 0 : packsSinceLastPity + 1;
+
+    //     Debug.Log("opened pack");
+    //     pack.packOpenVFX.Play();
+    //     return packCards;
+    // }
 
     private CardRaritySO RollRarity(CardSetSO cardSet)
     {
@@ -58,6 +102,18 @@ public class PackManager : MonoBehaviour
         return cardSet.rarities[cardSet.rarities.Length - 1]; // fallback to the last rarity if something goes wrong
     }
 
+    private void GrantCardFromRarity(CardRaritySO rarity)
+    {
+        if (rarity.cardPool == null || rarity.cardPool.Length == 0)
+        {
+            Debug.LogError($"Rarity {rarity.name} has no cards in its pool. Rarity slot skipped.");
+            return;
+        }
+
+        CardSO card = rarity.cardPool[Random.Range(0, rarity.cardPool.Length)];
+        // TODO: add the card to the player's collection or inventory.
+    }
+
     // void SpawnCards()
     // {
     //     List<Card> packCards = new List<Card>();
@@ -68,4 +124,22 @@ public class PackManager : MonoBehaviour
     //         Debug.Log($"Card {i} spawned");
     //     }
     // }
+
+    private int GetPityCount(string setCode)
+    {
+        PitySaveEntry entry = data.pityCounters.Find(e => e.setCode == setCode);
+        return entry != null ? entry.count : 0;
+    }
+
+    private void SetPityCount(string setCode, int count)
+    {
+        PitySaveEntry entry = data.pityCounters.Find(e => e.setCode == setCode);
+        if (entry == null)
+        {
+            entry = new PitySaveEntry { setCode = setCode };
+            data.pityCounters.Add(entry);
+        }
+        entry.count = count;
+    }
+
 }

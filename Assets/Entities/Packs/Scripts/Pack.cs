@@ -1,6 +1,4 @@
 using System;
-using Unity.Mathematics;
-using UnityEditor.UI;
 using UnityEngine;
 
 public class Pack : MonoBehaviour
