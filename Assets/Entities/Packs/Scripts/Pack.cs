@@ -22,6 +22,9 @@ public class Pack : MonoBehaviour
 
     private void AssignMaterial()
     {
+        if (!packSO) return;
+        if (!packMaterial) return;
+        if (!packSO.packArt) return;
         packMaterial.mainTexture = packSO.packArt;
         this.GetComponent<Renderer>().material = packMaterial;
     }
@@ -59,11 +62,17 @@ public class Pack : MonoBehaviour
 
     public void PlayPackOpenFX()
     {
+        if (!packOpenVFX)
+        {
+            Debug.LogError("Pack open VFX reference is missing.");
+            return;
+        } 
+            
+        if (!FXSpawnPos) 
+        {
+            Debug.LogError("FX spawn position reference is missing.");
+            return;
+        }
         Instantiate(packOpenVFX, FXSpawnPos.position, Quaternion.identity);
-    }
-
-    internal Card GetCardPrefab()
-    {
-        throw new NotImplementedException();
     }
 }

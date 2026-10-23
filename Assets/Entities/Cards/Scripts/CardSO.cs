@@ -18,7 +18,6 @@ public class CardSO : ScriptableObject
     [Header("Art")]
     public Texture2D cardArt;
     public CardStyle cardStyle;
-    private ParticleSystem openPackVFX;
 
     public enum CardType
     {

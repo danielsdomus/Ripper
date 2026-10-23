@@ -8,6 +8,7 @@ public class Card : MonoBehaviour
 
     void Start()
     {
+        if (!cardSO) return;
         Debug.Log(cardSO.cardName);
         AssignMaterial();
     }

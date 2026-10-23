@@ -3,30 +3,16 @@ using System.Collections.Generic;
 
 public class PackManager : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] PackSO pack;
-
-    [Header("Pack Settings")]
-    [SerializeField] int pityCap = 30; // max packs before opening pack's guaranteed rarity card
-
     SaveData data;
-    int packsSinceLastPity = 0;
 
     void Awake()
     {
         data = SaveSystem.Load();
-        if (!pack)
-        {
-            Debug.LogError("PackSO reference is missing in PackManager.");
-            return;
-        }
-        packsSinceLastPity = PlayerPrefs.GetInt("Pity_" + pack.cardSet.setCode, 0); // Replace with proper save system
     }
 
     public void OpenPack(PackSO pack)
     {
         CardSetSO cardSet = pack.cardSet;
-
 
         // Guards
         if (!cardSet)
@@ -34,14 +20,21 @@ public class PackManager : MonoBehaviour
             Debug.LogError($"{pack.name}: CardSetSO reference is missing in PackSO. Aborting pack opening.");
             return;
         }
+
         if (!cardSet.pityRarity)
         {
             Debug.LogError($"{pack.name}: Pity rarity is not set in CardSetSO. Aborting pack opening.");
             return;
         }
 
+        if (cardSet.rarities == null || cardSet.rarities.Length == 0)
+        {
+            Debug.LogError($"{cardSet.name} in {pack.name}: No rarities defined in CardSetSO. Aborting pack opening.");
+            return;
+        }
+
         int pityCount = GetPityCount(cardSet.setCode);
-        bool pityActive = pityCount >= cardSet.pityCap; // Guarantee pity card ON
+        bool pityActive = pityCount >= cardSet.pityCap - 1; // Guarantee pity card ON
 
         List<CardRaritySO> rolledRarities = new List<CardRaritySO>();
 
@@ -55,6 +48,7 @@ public class PackManager : MonoBehaviour
                 rolledRarities.Add(RollRarity(cardSet));
             }
         }
+
         int newPityCount = rolledRarities.Contains(cardSet.pityRarity) ? 0 : pityCount + 1;
         SetPityCount(cardSet.setCode, newPityCount);
 
@@ -65,28 +59,6 @@ public class PackManager : MonoBehaviour
         SaveSystem.Save(data);
         Debug.Log($"Pack opened. Total packs opened: {data.totalPacksOpened}. Pity count for set {cardSet.setCode}: {newPityCount}");
         }
-
-    // public List<CardSO> OpenPack()
-    // {
-    //     List<CardSO> packCards = new List<CardSO>();
-    //     List<CardRaritySO> rolledRarities = new List<CardRaritySO>();
-
-    //     bool pityActive = packsSinceLastPity >= pityCap -1; // Guarantee pity card ON cap number.
-
-    //     // Roll for each card in the pack
-    //     for (int i = 0; i < pack.packSize; i++)
-    //     {
-    //         CardRaritySO rarity = (pityActive && i == pack.packSize - 1) ? pack.cardSet.pityRarity : RollRarity(pack.cardSet);
-    //         rolledRarities.Add(rarity);
-    //         CardSO card = rarity.cardPool[Random.Range(0, rarity.cardPool.Length)];
-    //         packCards.Add(card);
-    //     }
-    //     packsSinceLastPity = rolledRarities.Contains(pack.cardSet.pityRarity) ? 0 : packsSinceLastPity + 1;
-
-    //     Debug.Log("opened pack");
-    //     pack.packOpenVFX.Play();
-    //     return packCards;
-    // }
 
     private CardRaritySO RollRarity(CardSetSO cardSet)
     {

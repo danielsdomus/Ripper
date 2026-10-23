@@ -811,8 +811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7adc4d3bd77f234a92d918bd6b07ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PackManager
-  pack: {fileID: 11400000, guid: 9b4d7cd3f36d09048b833be2d018ef6e, type: 2}
-  pityCap: 30
 --- !u!4 &1831165987
 Transform:
   m_ObjectHideFlags: 0
@@ -1117,7 +1115,7 @@ PrefabInstance:
     - target: {fileID: 7745999824863416400, guid: daf04ba7c34021b4ea0a994a6c6ee99f, type: 3}
       propertyPath: packSO
       value: 
-      objectReference: {fileID: 11400000, guid: ece3d63d1bd6d304c8509e11e873eaa1, type: 2}
+      objectReference: {fileID: 11400000, guid: 9b4d7cd3f36d09048b833be2d018ef6e, type: 2}
     - target: {fileID: 7745999824863416400, guid: daf04ba7c34021b4ea0a994a6c6ee99f, type: 3}
       propertyPath: packMaterial
       value: 

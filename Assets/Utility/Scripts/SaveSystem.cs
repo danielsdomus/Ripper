@@ -31,8 +31,15 @@ public static class SaveSystem
     {
         if (!File.Exists(SavePath))
             return new SaveData(); // first run
-
+        try
+        {
         string json = File.ReadAllText(SavePath);
         return JsonUtility.FromJson<SaveData>(json);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Couldn't read save at {SavePath}: {e.Message}. Starting fresh.");
+            return new SaveData(); // return a new instance if loading fails
+        }
     }
 }
