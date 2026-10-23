@@ -14,7 +14,7 @@ public class Card : MonoBehaviour
 
     private void AssignMaterial()
     {
-        cardMaterial.mainTexture = cardSO.cardImage;
+        cardMaterial.mainTexture = cardSO.cardArt;
         this.GetComponent<Renderer>().material = cardMaterial;
     }
 }

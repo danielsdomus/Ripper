@@ -4,17 +4,20 @@ using UnityEngine;
 public class CardSO : ScriptableObject
 {
     public GameObject cardPrefab;
-    [Header("Card Info")]
-    public string cardName { get; }
-    public string cardDescription { get; }
+   
+   [Header("Card Info")]
+    public string cardName;
+    [TextArea] public string cardDescription;
+    
     [Header("Card Data")]
-    public float cardPrice { get; }
-    public CardType cardType { get; }
-    public Rarity rarity { get; }
+    public CardSetSO cardSet;
+    public int cardID;
+    public float cardPrice;
+    public CardType cardType;
+    
     [Header("Art")]
-    public Texture cardImage;
-    // Change this when I figure out how I want to handle images, right now simple name/directory lookup
-    public CardStyle cardStyle { get; }
+    public Texture2D cardArt;
+    public CardStyle cardStyle;
     private ParticleSystem openPackVFX;
 
     public enum CardType
@@ -34,12 +37,4 @@ public class CardSO : ScriptableObject
         Prototype
     }
 
-    public enum Rarity
-    {
-        Common,
-        Uncommon,
-        Rare,
-        SuperRare,
-        UltraRare
-    }
 }

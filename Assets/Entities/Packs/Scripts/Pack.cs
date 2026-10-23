@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Pack : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] PackSO packSO;
-    [SerializeField] GameObject packOpenVFX;
     [SerializeField] Transform FXSpawnPos;
-
+    
+    [Header("Pack Settings")]
+    [SerializeField] GameObject packOpenVFX;
     [SerializeField] Material packMaterial;
 
     private void Start()
@@ -16,13 +18,13 @@ public class Pack : MonoBehaviour
         if (!packSO) return;
         AssignMaterial();
         Debug.Log($"PackSO found.\nPack Name: {packSO.packName}\nPack Description:{packSO.packDescription}");
-        Debug.Log($"Pack Price: {packSO.packPrice}\nPack Set: {packSO.packSet}");
+        Debug.Log($"Pack Price: {packSO.packPrice}\nPack Set: {packSO.cardSet}");
         Debug.Log($"Pack Size: {packSO.packSize}");
     }
 
     private void AssignMaterial()
     {
-        packMaterial.mainTexture = packSO.packImage;
+        packMaterial.mainTexture = packSO.packArt;
         this.GetComponent<Renderer>().material = packMaterial;
     }
 
@@ -42,9 +44,9 @@ public class Pack : MonoBehaviour
         return packSO.packDescription;
     }
 
-    public string GetPackSet()
+    public CardSetSO GetPackSet()
     {
-        return packSO.packSet;
+        return packSO.cardSet;
     }
 
     public int GetPackSize()

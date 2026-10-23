@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d117ae0d10202408a47db0c8aeaeec, type: 3}
   m_Name: FreePack
   m_EditorClassIdentifier: Assembly-CSharp::PackSO
-  packPrefab: {fileID: 8343659125433051832, guid: 045585cf8a6a8424eacf32452f3d004f, type: 3}
+  packPrefab: {fileID: 5583145177057537793, guid: daf04ba7c34021b4ea0a994a6c6ee99f, type: 3}
   packName: Basic Pack
   packDescription: Basic pack to get you going! You'll want to get something with
     more than two cards.
-  packSet: Basics
+  cardSet: {fileID: 11400000, guid: 36cc59b9d02907b42b24209fd471e3f9, type: 2}
   packPrice: 0
   packSize: 2
-  packImage: {fileID: 2800000, guid: 502167c0fe3db1d42af015dd3f8d8c18, type: 3}
+  packArt: {fileID: 2800000, guid: 602cb87b6a29443b8636370ea0751574, type: 3}
+  packOpenVFX: {fileID: 4867813766912649702, guid: 5ff5bd433144e0a43bcf4d4bbf0541f7, type: 3}

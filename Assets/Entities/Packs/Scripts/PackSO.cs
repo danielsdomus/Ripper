@@ -7,9 +7,10 @@ public class PackSO : ScriptableObject
     public string packName;
     public string packDescription;
     [Header("Card Data")]
-    public string packSet;
+    public CardSetSO cardSet;
     public float packPrice = 8.99f;
     public int packSize = 10;
     [Header("Art")]
-    public Texture packImage;
+    public Texture packArt;
+    public ParticleSystem packOpenVFX;
 }
